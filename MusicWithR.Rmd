@@ -1,0 +1,51 @@
+---
+title: "Music Analysis"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Including Code
+
+You can include R code in the document as follows:
+
+```{r load libraries}
+library(dplyr)
+library(audio)
+library(warbleR)
+library(seewave)
+```
+
+## Play the songs
+
+You can play songs directly from website hosting free .wav song files, for example:
+
+```{r songs from site}
+wav_file <- tempfile()
+download.file("https://file-examples.com/wp-content/uploads/2017/11/file_example_WAV_1MG.wav", wav_file, mode = "wb")
+aud_wav <- load.wave(wav_file)
+audio::play(aud_wav)
+
+```
+Analysing the song graphically
+```{r seewave}
+a <- readWave(wav_file)
+seewave::spectro(a, fastdisp = TRUE)
+```
+The sound can be played normal, slower or faster - opens media player window
+```{r sound frequency}
+# normal
+listen(a,f=8000)
+# two times faster
+listen(a,f=8000*2)
+# two times slower
+listen(a,f=8000/2)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
