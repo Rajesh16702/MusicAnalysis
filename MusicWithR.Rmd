@@ -23,8 +23,7 @@ library(seewave)
 ```
 
 ## Play the songs
-
-You can play songs directly from website hosting free .wav song files, for example:
+You can play songs directly from website hosting free .wav song files\f
 
 ```{r songs from site}
 wav_file <- tempfile()
@@ -33,19 +32,23 @@ aud_wav <- load.wave(wav_file)
 audio::play(aud_wav)
 
 ```
-Analysing the song graphically
+## Visualizing the song 2D way
 ```{r seewave}
-a <- readWave(wav_file)
+a <- readWave(wav_file, from = 1, to = 20, units = "seconds")
 seewave::spectro(a, fastdisp = TRUE)
 ```
-The sound can be played normal, slower or faster - opens media player window
-```{r sound frequency}
+##Listen to the song
+The song can be played normal, slower or faster. It opens media player window
+```{r normal frequency}
 # normal
 listen(a,f=8000)
+```
+```{r faster}
 # two times faster
 listen(a,f=8000*2)
+```
+```{r slower}
 # two times slower
 listen(a,f=8000/2)
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+fffeffff
